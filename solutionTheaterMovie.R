@@ -1,11 +1,11 @@
 # Assignment
-# For today's assignment, you will be simulating the total revenue earned 
-# each day for a movie theater over the course of a week. You have some 
-# starter code below and comments on what you are supposed to do. If you finish 
-# the project early you can try creating the optional functionality detailed in 
+# For today's assignment, you will be simulating the total revenue earned
+# each day for a movie theater over the course of a week. You have some
+# starter code below and comments on what you are supposed to do. If you finish
+# the project early you can try creating the optional functionality detailed in
 # the comments at the top of the starter code.
 
-# 
+#
 # Notes:
 # Make sure you don't have more people attending your movie than you have seats
 # The amount of adult and children in the theater should be randomized
@@ -15,19 +15,23 @@
 
 # Potential Questions to Answer:
 # 1. Create snacks that the customers can buy and randomize who buys which snack
-# 2. Pretend you own multiple theaters and run two simulations to represent each 
+snacks = c('popcorn'=5, 'chicken'=10)
+snacks['popcorn']
+# 2. Pretend you own multiple theaters and run two simulations to represent each
 # theater and plot the results
-# 3. Create conditional statements for movies that may be PG-13 and children are 
+# 3. Create conditional statements for movies that may be PG-13 and children are
 # not allowed to watch
 
 # Cost for adults and children
 
-ticket_cost_adult <- c(1)
+ticket_cost_adult <- c(2)
 ticket_cost_child <- c(1)
 movies <- c('Cinderella Man', 'Lord of the Rings')  # List 5 of your favorite movies
-screens <- c(2) # How many screens does the theater have? (assume 1 per movie)
+screens <- rep(0, 2) # How many screens does the theater have? (assume 1 per movie)
 seats <- c(10, 10)  # How many seats does each theater hold
 week_days <- rep(0, 7)  # Store totals for each day
+revenue_per_movie = c(screens)
+
 
 # return total revenue
 day_total_revenue <- function(visitors_adults, visitors_children) {
@@ -43,44 +47,67 @@ for (i in 1:length(week_days)) {
   
   screen_revenue <- rep(0, 7)
   # iterate through the amount of screens on a particular day
-  for (j in 1:screens) {
+  for (j in 1:length(screens)) {
         print(sprintf('Screens %d ', j))
         # Calculate  how many adults and children are watching the movie
-        visitors_adults <- sample(1:10, 1)
-        visitors_children <- sample(1:10, 1)
+        visitors_adults <- sample(1:8, 1)
+        visitors_children <- sample(1:8, 1)
         total_people <- visitors_adults + visitors_children
-        print(sprintf("Revenue %d ",total_people))
+        
         
         # check screen capacity was not passed
         if(total_people > seats[j]){
           print("No more seats ***************************")
-          screen_revenue[i] <- day_total_revenue(visitors_adults, visitors_children)
+          screen_revenue[i] <- 0
           next
         }
         
         # Calculate the revenue for adults and children
         # Calculate revenue, and add to running total for the day
-        screen_revenue[i] <- day_total_revenue(visitors_adults, visitors_children)
-        print("Revenue per screen and")
-        print(screen_revenue)
+        revenue <- day_total_revenue(visitors_adults, visitors_children)
+        screen_revenue[i] <- revenue
+      
+        print(sprintf("Revenue %d ",revenue))
+        
+        revenue_per_movie[j] <- revenue + revenue_per_movie[j]
         week_days <- screen_revenue + week_days
-        print("Per day")
+        
+        print(sprintf("Cumulative revenue"))
         print(week_days)
   }
   # Save total to the corresponding day
 
-  print("Revenue per day")
+  print(sprintf("Per week in day %d is ", i))
   print(week_days)
  
 }
 
-week_days
-
+revenue_per_movie
 
 
 
 # Make a barchart showing total revenue per day
-    
+
+barplot(week_days,
+        main = "Revenue in a Week",
+        xlab = "Revenue",
+        ylab = "Day",
+        names.arg = c("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"),
+        col = "darkred",
+        horiz = FALSE)
+
 # Make any other chart
-    
-# Which day had the highest revenue? 
+
+
+barplot(revenue_per_movie, names.arg = c(movies), col='red')
+
+
+
+# Which day had the highest revenue?
+
+# with these information:
+# week_days
+# [1]  0 16 14  0 15  9 12
+
+# Bar char show up Monday (probably a holiday)
+

@@ -27,8 +27,10 @@ snacks['popcorn']
 ticket_cost_adult <- c(2)
 ticket_cost_child <- c(1)
 movies <- c('Cinderella Man', 'Lord of the Rings')  # List 5 of your favorite movies
-screens <- rep(0, 2) # How many screens does the theater have? (assume 1 per movie)
+
+screens <- rep(0, length(movies)) # How many screens does the theater have? (assume 1 per movie)
 seats <- c(10, 10)  # How many seats does each theater hold
+named_days_of_week = c("Sunday", "Monday", "Tuesday", "Wedneday", "Thursday", "Friday", "Saturday")
 week_days <- rep(0, 7)  # Store totals for each day
 revenue_per_movie = c(screens)
 
@@ -82,22 +84,18 @@ for (i in 1:length(week_days)) {
  
 }
 
-revenue_per_movie
-
-
 
 # Make a barchart showing total revenue per day
 
 barplot(week_days,
         main = "Revenue in a Week",
-        xlab = "Revenue",
-        ylab = "Day",
-        names.arg = c("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"),
+        xlab = "Day",
+        ylab = "Revenue",
+        names.arg = named_days_of_week,
         col = "darkred",
         horiz = FALSE)
 
 # Make any other chart
-
 
 barplot(revenue_per_movie, names.arg = c(movies), col='red')
 
@@ -105,9 +103,11 @@ barplot(revenue_per_movie, names.arg = c(movies), col='red')
 
 # Which day had the highest revenue?
 
-# with these information:
-# week_days
-# [1]  0 16 14  0 15  9 12
+highestRevenue <- which(week_days==max(week_days))
 
-# Bar char show up Monday (probably a holiday)
+sprintf("The day with the highest reveneu is: %s with $%d", 
+        named_days_of_week[highestRevenue], 
+        max(week_days))
+
+
 

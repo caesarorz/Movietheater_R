@@ -26,10 +26,10 @@ snacks['popcorn']
 
 ticket_cost_adult <- c(2)
 ticket_cost_child <- c(1)
-movies <- c('Cinderella Man', 'Lord of the Rings')  # List 5 of your favorite movies
+movies <- c('Cinderella Man', 'Lord of the Rings', 'Avatar', 'Star War', 'Ridic')  # List 5 of your favorite movies
 
 screens <- rep(0, length(movies)) # How many screens does the theater have? (assume 1 per movie)
-seats <- c(10, 10)  # How many seats does each theater hold
+seats <- c(40, 30, 20, 20, 30)  # How many seats does each theater hold
 named_days_of_week = c("Sunday", "Monday", "Tuesday", "Wedneday", "Thursday", "Friday", "Saturday")
 week_days <- rep(0, 7)  # Store totals for each day
 revenue_per_movie = c(screens)

@@ -1,26 +1,21 @@
-# Assignment
-# For today's assignment, you will be simulating the total revenue earned
-# each day for a movie theater over the course of a week. You have some
-# starter code below and comments on what you are supposed to do. If you finish
-# the project early you can try creating the optional functionality detailed in
-# the comments at the top of the starter code.
+#Collaborators:
 
-#
-# Notes:
-# Make sure you don't have more people attending your movie than you have seats
-# The amount of adult and children in the theater should be randomized
-# Make sure to answer the 3 questions at the bottom of the starter code.
-# You can download the start code at the bottom.
+# - Megan Madrigal Amador. 
+# - César Orozco Zamora. 
+# - Johan Bastos Zamora. 
 
 
-# Potential Questions to Answer:
-# 1. Create snacks that the customers can buy and randomize who buys which snack
 
+# The following code simulates a movie theater with 5 screens.
+# We have an asistance per day per movie
+# with the cost of the ticket
+# also with the possibility to buy snacks
 
-# 2. Pretend you own multiple theaters and run two simulations to represent each
-# theater and plot the results
-# 3. Create conditional statements for movies that may be PG-13 and children are
-# not allowed to watch
+# We add the cost of the staff: c("cleaning"=100, "snack seller"=100, "tickets seller"=100, "movie staff"=250, "manager"=350)
+# also fixed cost like rent and insurance
+
+# We proyect everything for 48 weeks (whole year 28 days per month)
+
 
 snacks_with_prices = c('popcorn'=5, 'chickenwings'=10, 'soda'=5, 'candy '=10)
 ticket_cost_adult <- c(15)
